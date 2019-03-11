@@ -30,12 +30,10 @@ module "test_net" {
 
 module "vm" {
   source = "./modules/vm"
-  vnet_name = "${lookup(module.test_net.vnet, "id")}"
-  network_rg = "${module.test_net.resource_group}"
   name_prefix = "${var.name_prefix}"
   admin_password = "${var.admin_password}"
   hostname = "${var.hostname}"
-  subnet_name = "${lookup(module.test_net.default_subnet, "name")}"
+  subnet_id = "${lookup(module.test_net.default_subnet, "id")}"
 }
 
 # module "vmss" {

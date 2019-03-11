@@ -1,13 +1,5 @@
 
 # Manditory Parameters
-variable "vnet_name" {
-  type = "string"
-}
-
-variable "network_rg" {
-  type = "string"  
-}
-
 
 variable "name_prefix" {
   type = "string"
@@ -26,12 +18,12 @@ variable "hostname" {
 }
 
 
+variable "subnet_id" {
+  type = "string"
+}
+
 # Optional Parameters
 
-variable "subnet_name" {
-  type = "string"
-  default = "default"
-}
 variable "location" {
   description = "The location/region where the virtual network is created. Changing this forces a new resource to be created."
   default     = "eastus"
