@@ -8,7 +8,7 @@ output "vnet" {
       "id", "${azurerm_virtual_network.network.id}",
       "name", "${azurerm_virtual_network.network.name}",
       "location", "${azurerm_virtual_network.network.location}",
-      "address_space", "${azurerm_virtual_network.network.address_space}"
+      "address_space", "${azurerm_virtual_network.network.address_space[0]}"
     )
   }"
 }
