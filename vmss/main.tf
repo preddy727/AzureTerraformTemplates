@@ -5,6 +5,21 @@ data "azurerm_shared_image_version" "image" {
   resource_group_name = "SharedImageGallery"
 }
 
+resource "azurerm_key_vault" "test" {
+  name                = "testvault"
+  location            = "${azurerm_resource_group.testrg.location}"
+  resource_group_name = "${azurerm_resource_group.test.name}"
+
+  sku {
+    name = "standard"
+  }
+
+  network_rules { 
+    ip_rules = ["127.0.0.1"] 
+    virtual_network_subnet_ids = ["${azurerm_subnet.test.id}"] 
+  }
+}
+
 resource "azurerm_resource_group" "test" {
   name     = "acctestRG"
   location = "West US 2"
