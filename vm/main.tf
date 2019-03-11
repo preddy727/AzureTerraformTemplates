@@ -137,5 +137,27 @@ resource "azurerm_virtual_machine" "vm" {
     disable_password_authentication = false
 
   }
+  
+  resource "azurerm_virtual_machine_extension" "disk-encryption" {
+  name                 = "DiskEncryption"
+  location             = "${local.location}"
+ resource_group_name = "${azurerm_resource_group.environment-rg.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.server.name}"
+  publisher            = "Microsoft.Azure.Security"
+  type                 = "AzureDiskEncryption"
+  type_handler_version = "2.2"
+
+  settings = <<SETTINGS
+{
+  "EncryptionOperation": "EnableEncryption",
+  "KeyVaultURL": "https://${local.vaultname}.vault.azure.net",
+  "KeyVaultResourceId": "/subscriptions/${local.subscriptionid}/resourceGroups/${local.vaultresourcegroup}/providers/Microsoft.KeyVault/vaults/${local.vaultname}",
+  "KeyEncryptionKeyURL": "https://${local.vaultname}.vault.azure.net/keys/${local.keyname}/${local.keyversion}",
+  "KekVaultResourceId": "/subscriptions/${local.subscriptionid}/resourceGroups/${local.vaultresourcegroup}/providers/Microsoft.KeyVault/vaults/${local.vaultname}",
+  "KeyEncryptionAlgorithm": "RSA-OAEP",
+  "VolumeType": "All"
+}
+SETTINGS
+}
 
 }
