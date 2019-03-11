@@ -8,15 +8,15 @@ resource "azurerm_key_vault" "test" {
   location                    = "${azurerm_resource_group.test.location}"
   resource_group_name         = "${azurerm_resource_group.test.name}"
   enabled_for_disk_encryption = true
-  tenant_id                   = "72f988bf-86f1-41af-91ab-2d7cd011db47"
+  tenant_id                   = ""
 
   sku {
     name = "standard"
   }
 
   access_policy {
-    tenant_id = "72f988bf-86f1-41af-91ab-2d7cd011db47"
-    object_id = "8a903e73-2954-4f47-b714-35484412d00a"
+    tenant_id = ""
+    object_id = ""
 
     key_permissions = [
       "backup", "create", "decrypt", "delete", "encrypt", "get", "import", "list", "purge", "recover", "restore", "sign", "unwrapKey", "update", "verify", "wrapKey",
