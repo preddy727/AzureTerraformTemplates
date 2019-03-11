@@ -7,12 +7,12 @@ data "azurerm_shared_image_version" "image" {
 
 
 provider "azurerm" {
-  subscription_id = "c2483929-bdde-40b3-992e-66dd68f52928"
+  subscription_id = ""
 }
 
 #provider "azurerm" {
 #  alias  = "b"
-#  subscription_id = "61952390-f02b-4286-a7cd-895e089f6750"
+#  subscription_id = ""
 #}
  
 resource "azurerm_resource_group" "rg" {
