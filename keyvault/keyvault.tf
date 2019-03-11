@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "test" {
 }
 
 resource "azurerm_key_vault" "test" {
-  name                        = "testvaultprithvi"
+  name                        = "testvault"
   location                    = "${azurerm_resource_group.test.location}"
   resource_group_name         = "${azurerm_resource_group.test.name}"
   enabled_for_disk_encryption = true
