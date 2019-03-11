@@ -1,7 +1,7 @@
 data "azurerm_shared_image_version" "image" {
   name                = "1.0.0"
   image_name          = "ubuntu_tomcat"
-  gallery_name        = "attdemo"
+  gallery_name        = "demo"
   resource_group_name = "SharedImageGallery"
 }
 
