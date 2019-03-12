@@ -10,6 +10,9 @@ Deploying a sample Tomcat Application on Azure using Packer to create an image a
 ## Recommended Reading
 * Series of Labs for Terraform on Azure [here](https://azurecitadel.com/automation/terraform/)
 
+### Architecture Diagram
+* Process flow [![alt text](https://github.com/preddy727/AzureTerraformTemplates/blob/master/images/Picture1.png)]
+
 ## Goals of the Lab
 1. Create a customized Ubuntu managed image with Tomcat installed 
 2. Create a Key Vault enabled for disk encryption and a Key
