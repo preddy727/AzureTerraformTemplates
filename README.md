@@ -52,7 +52,7 @@ Terraform apply -out output
 
 az network vnet subnet update --resource-group "myresourcegroup" --vnet-name "myvnet" --name "mysubnet" --service-endpoints "Microsoft.KeyVault"
 
-* Run the following commands in a command prompt to allow the subnet of your Terraform vm access to the key vault
+*Run the following commands in a command prompt to allow the subnet of your Terraform vm access to the key vault
 
 subnetid=$(az network vnet subnet show --resource-group "myresourcegroup" --vnet-name "myvnet" --name "mysubnet" --query id --output tsv)
 
