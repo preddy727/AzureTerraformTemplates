@@ -1,7 +1,7 @@
 # Infrastructure as Code on Azure
 ## Overview
 
-Deploying a sample Tomcat Application on Azure using Packer to create an image and Terraform to deply a Virtual Machine Scale Set
+Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 
 ## Pre-requisites 
 * Create a Terraform Linux virtual machine with managed identities [here](https://docs.microsoft.com/en-us/azure/terraform/terraform-vm-msi)
