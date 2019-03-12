@@ -44,6 +44,13 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 ## Create the key vault disk encryption with key
 ### [Back to Excercises](#exercises)
 
+Terraform init 
+Terraform apply -out output
+
+* Run the following commands in a command prompt to allow the subnet of your Terraform vm access to the key vault
+subnetid=$(az network vnet subnet show --resource-group "myresourcegroup" --vnet-name "myvnet" --name "mysubnet" --query id --output tsv)
+az keyvault network-rule add --resource-group "demo9311" --name "demo9311premium" --subnet $subnetid
+
 ## Deploy a Virtual machine scale set
 ### [Back to Excercises](#exercises)
 
