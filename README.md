@@ -18,12 +18,13 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 
 ## Goals of the Lab
 1. Create a customized Ubuntu managed image with Tomcat installed 
-2. Create a Key Vault enabled for disk encryption and a Key
-3. Deploy a Virtual machine scale set
+2. Store the image in a shared image gallery
+3. Create a Key Vault enabled for disk encryption and a Key
+4. Deploy a Virtual machine scale set
     * Enable service endpoint for Key Vault. 
     * Update key vault access policy to allow scale set subnet. 
     * Enable disk encryption extension and associate with key
-4. Access Tomcat webpage 
+5. Access Tomcat webpage 
 
 ## Exercises
 
