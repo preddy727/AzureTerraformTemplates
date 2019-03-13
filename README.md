@@ -37,9 +37,17 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 ## Custom Ubuntu Tomcat with Packer
 ### [Back to Excercises](#exercises)
 
-1. 
+1. Create an Azure DevOps project
 
-2. 
+2. Import the json into Azure repot
+
+3. Install the hosted build agent into the Terraform linux vm 
+
+4. Setup a build pipeline with tasks using the replace tokens module to populate environment variables into the json file. 
+
+5. The output is a customized managed image. 
+
+6. Not the resource group and name of the final managed image. 
 
 
 ## Create the key vault disk encryption with key
