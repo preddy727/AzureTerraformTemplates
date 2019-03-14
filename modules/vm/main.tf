@@ -4,7 +4,9 @@ data "azurerm_shared_image_version" "image" {
   gallery_name        = "attdemo"
   resource_group_name = "SharedImageGallery"
 }
- 
+
+data "azurerm_subscription" "current" {} 
+
 resource "azurerm_resource_group" "rg" {
   name     = "${var.name_prefix}-compute-rg"
   location = "${var.location}"
@@ -61,4 +63,36 @@ resource "azurerm_virtual_machine" "vm" {
     disable_password_authentication = false
   }
 
+}
+data "azurerm_key_vault" "test" {
+  name                = "${var.name_prefix}-vault"
+  resource_group_name = "${var.name_prefix}-rg"
+}
+
+data "azurerm_key_vault_key" "testsecret" {
+  name      = "generated-certificate"
+  key_vault_id = "${data.azurerm_key_vault.test.id}"
+}
+
+
+resource "azurerm_virtual_machine_extension" "disk-encryption" {
+  name                 = "DiskEncryption"
+  location             = "${var.location}"
+ resource_group_name = "${azurerm_resource_group.rg.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.vm.name}"
+  publisher            = "Microsoft.Azure.Security"
+  type                 = "AzureDiskEncryptionForLinux"
+  type_handler_version = "1.1"
+
+  settings = <<SETTINGS
+{
+  "EncryptionOperation": "EnableEncryption",
+  "KeyVaultURL": "https://${var.name_prefix}-vault.vault.azure.net",
+  "KeyVaultResourceId": "${data.azurerm_subscription.current.id}/resourceGroups/${var.name_prefix}-rg/providers/Microsoft.KeyVault/vaults/${var.name_prefix}-vault", 
+  "KeyEncryptionKeyURL": "https://${var.name_prefix}-vault.vault.azure.net/keys/generated-certificate/${data.azurerm_key_vault_key.testsecret.version}",
+  "KekVaultResourceId": "${data.azurerm_subscription.current.id}/resourceGroups/${var.name_prefix}-rg/providers/Microsoft.KeyVault/vaults/${var.name_prefix}-vault",
+  "KeyEncryptionAlgorithm": "RSA-OAEP",
+  "VolumeType": "All"
+}
+SETTINGS
 }
