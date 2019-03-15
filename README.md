@@ -14,7 +14,7 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 * Series of Labs for Terraform on Azure [here](https://azurecitadel.com/automation/terraform/)
 
 ### Architecture Diagram
-* Process flow ![alt text](https://github.com/preddy727/AzureTerraformTemplates/blob/master/images/Picture1.png)
+* Process flow ![alt text](https://github.com/preddy727/AzureTerraformTemplates/blob/master/images/architecture.png)
 
 ## Goals of the Lab
 1. Create a customized Ubuntu managed image with Tomcat installed 
