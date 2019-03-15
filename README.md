@@ -39,7 +39,7 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 
 1. Create an Azure DevOps project
 
-2. Import the json into Azure repot
+2. Import the  Packer json into Azure repot
 
 3. Install the hosted build agent into the Terraform linux vm 
 
@@ -47,25 +47,19 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 
 5. The output is a customized managed image. 
 
-6. Not the resource group and name of the final managed image. 
+6. Note the resource group and name of the final managed image. 
 
 
 ## Create the key vault disk encryption with key
 ### [Back to Excercises](#exercises)
 
-1.Login to Terraform vm where github repository was cloned and run the following commands 
+1.Login to Terraform vm where github repository was cloned and run the following commands.
+
 Terraform init 
+
 Terraform apply -out output
 
-2.Enable a service endpoint for Key Vault on the existing Terraform virtual network and subnet.
 
-az network vnet subnet update --resource-group "myresourcegroup" --vnet-name "myvnet" --name "mysubnet" --service-endpoints "Microsoft.KeyVault"
-
-3.Run the following commands in a command prompt to allow the subnet of your Terraform vm access to the key vault
-
-subnetid=$(az network vnet subnet show --resource-group "myresourcegroup" --vnet-name "myvnet" --name "mysubnet" --query id --output tsv)
-
-az keyvault network-rule add --resource-group "demo9311" --name "demo9311premium" --subnet $subnetid
 
 ## Deploy a Virtual machine scale set
 ### [Back to Excercises](#exercises)
