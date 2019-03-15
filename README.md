@@ -53,7 +53,9 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 ## Create the key vault disk encryption with key
 ### [Back to Excercises](#exercises)
 
-1.Login to Terraform vm where github repository was cloned and run the following commands.
+1.Login to Terraform vm where github repository was cloned and run the following commands. 
+
+export ARM_USE_MSI=true
 
 Terraform init 
 
