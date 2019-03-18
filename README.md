@@ -6,6 +6,7 @@ Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 ## Pre-requisites 
 Option 1 for Ubuntu management VM  
 * Create a Terraform Ubuntu virtual machine with managed identities using a marketplace template [here](https://docs.microsoft.com/en-us/azure/terraform/terraform-vm-msi)
+
 Option 2 for CentOS management VM 
 * Create a Terraform Centos virtual machine with managed identities. 
 
