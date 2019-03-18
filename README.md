@@ -4,7 +4,12 @@
 Deploy a sample Tomcat Application on an Azure Virtual Machine Scale Set
 
 ## Pre-requisites 
-* Create a Terraform Linux virtual machine with managed identities [here](https://docs.microsoft.com/en-us/azure/terraform/terraform-vm-msi)
+Option 1 for Ubuntu management VM  
+* Create a Terraform Ubuntu virtual machine with managed identities using a marketplace template [here](https://docs.microsoft.com/en-us/azure/terraform/terraform-vm-msi)
+Option 2 for CentOS management VM 
+* Create a Terraform Centos virtual machine with managed identities. 
+
+Setup Steps
 * Contributor permission helps MSI on VM to use Terraform to create resources outside the VM resource group. You can easily achieve this action by running a script once inside the Terraform Linux vm. ~/tfEnv.sh
 * The VM has a Terraform remote state back end. To enable it on your Terraform deployment, copy the remoteState.tf file from tfTemplate directory to the root of the Terraform scripts. cp ~/tfTemplate/remoteState.tf .
 * Install the Packer precompiled binary on the Terraform VM [download](https://www.packer.io/intro/getting-started/install.html#precompiled-binaries)
