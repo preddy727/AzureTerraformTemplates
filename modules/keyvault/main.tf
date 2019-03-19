@@ -27,7 +27,7 @@ resource "azurerm_key_vault" "vmvault" {
   }
   access_policy {
     tenant_id = "${data.azurerm_client_config.current.tenant_id}"
-    object_id = "${data.azurerm_client_config.current.client_id}" 
+    object_id = "${data.azurerm_client_config.current.client_id}"
 
     key_permissions = [
       "backup", "create", "decrypt", "delete", "encrypt", "get", "import", "list", "purge", "recover", "restore", "sign", "unwrapKey", "update", "verify","wrapKey",
