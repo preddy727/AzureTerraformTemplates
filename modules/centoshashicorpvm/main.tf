@@ -80,6 +80,8 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
+  
+  }
 
 data "azurerm_key_vault" "test" {
   name                = "${var.name_prefix}-vault"
@@ -113,4 +115,4 @@ resource "azurerm_virtual_machine_extension" "disk-encryption" {
 }
 SETTINGS
 }
-  }
+ 
