@@ -113,3 +113,4 @@ resource "azurerm_virtual_machine_extension" "disk-encryption" {
 }
 SETTINGS
 }
+  }
