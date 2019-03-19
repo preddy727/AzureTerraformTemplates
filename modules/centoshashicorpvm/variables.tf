@@ -37,6 +37,7 @@ variable "os_type" {
 
 variable "storage_account_type" {
   description = "Defines the type of storage account to be created. Valid options are Standard_LRS, Standard_ZRS, Standard_GRS, Standard_RAGRS, Premium_LRS. Changing this is sometimes valid - see the Azure documentation for more information on which types of accounts can be converted into other types."
+  default = "Standard_LRS"
   }
 
 variable "vm_size" {
