@@ -1,9 +1,13 @@
 data "azurerm_client_config" "current" {}
 
+data "azurerm_resource_group" "network" {
+  name = "${var.name_prefix}-vnet"
+}
+
 data "azurerm_subnet" "terraform" {
-  name                 = "fillthisin"
-  virtual_network_name = "fillthisin"
-  resource_group_name  = "fillthisin"
+  name                 = "${var.name_prefix}-default"
+  virtual_network_name = "${var.name_prefix}-vnet"
+  resource_group_name  = "${var.name_prefix}-vnet"
 }
 
 resource "azurerm_resource_group" "vault_rg" {
@@ -45,7 +49,7 @@ resource "azurerm_key_vault" "vmvault" {
     environment = "${lookup(var.environment_map, var.environment, var.environment)}"
   }
 }
-
+/*
 resource "azurerm_key_vault_key" "generated" {
   name      = "generated-certificate"
   key_vault_id = "${azurerm_key_vault.vmvault.id}"
@@ -53,5 +57,5 @@ resource "azurerm_key_vault_key" "generated" {
   key_size  = 2048
 
   key_opts = "${var.key_opts}"
-  depends_on = ["azurerm_key_vault.vmvault"]
  }
+*/
