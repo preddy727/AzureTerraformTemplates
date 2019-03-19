@@ -1,13 +1,9 @@
 data "azurerm_client_config" "current" {}
 
-data "azurerm_resource_group" "network" {
-  name = "${var.name_prefix}-vnet"
-}
-
 data "azurerm_subnet" "terraform" {
   name                 = "${var.name_prefix}-default"
   virtual_network_name = "${var.name_prefix}-vnet"
-  resource_group_name  = "${data.azurerm_resource_group.network.name}"
+  resource_group_name  = "${var.name_prefix}-vnet"
 }
 
 resource "azurerm_resource_group" "vault_rg" {
