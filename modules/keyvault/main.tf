@@ -1,9 +1,13 @@
 data "azurerm_client_config" "current" {}
 
+data "azurerm_resource_group" "network" {
+  name = "${var.name_prefix}-vnet"
+}
+
 data "azurerm_subnet" "terraform" {
-  name                 = "fillthisin"
-  virtual_network_name = "fillthisin"
-  resource_group_name  = "fillthisin"
+  name                 = "${var.name_prefix}-default"
+  virtual_network_name = "${var.name_prefix}-vnet"
+  resource_group_name  = "${data.azurerm_resource_group.network.name}"
 }
 
 resource "azurerm_resource_group" "vault_rg" {
@@ -23,7 +27,7 @@ resource "azurerm_key_vault" "vmvault" {
   }
   access_policy {
     tenant_id = "${data.azurerm_client_config.current.tenant_id}"
-    object_id = "${data.azurerm_client_config.current.client_id}" 
+    object_id = "${data.azurerm_client_config.current.client_id}"
 
     key_permissions = [
       "backup", "create", "decrypt", "delete", "encrypt", "get", "import", "list", "purge", "recover", "restore", "sign", "unwrapKey", "update", "verify","wrapKey",
