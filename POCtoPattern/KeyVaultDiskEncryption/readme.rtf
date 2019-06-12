@@ -1,0 +1,56 @@
+
+1) Open an Azure cloud shell or local shell with Az cli installed 
+2) List all accounts and find the correct tenant id 
+$az account list 
+Save the tenant id of the subscription where key vault will be created
+3) Set the correct subscription 
+$az account set --subscription <tenantid>
+4) Get object id of logged in user
+$ az ad signed-in-user show | grep "objectId"
+Export the objectID such as the one below to a a Terraform environment variable
+  "objectId": "6d49dd26-6796-440f-9a9d-3c5c5e972ef6"
+$ export TF_VAR_objectid=6d49dd26-6796-440f-9a9d-3c5c5e972ef6
+5) Get the current ip 
+$ curl http://ifconfig.me
+Export the ip address such as the one below to a Terraform environment variable 
+$ export TF_VAR_ip_rules='["167.220.149.58"]'
+6) Get the application id of the service principal
+ - Go to https://dev.azure.com/poc2pattern/POCtoPattern/_settings/adminservices?_a=resources
+- Click on the service principal created
+- Click on Manage Service Principal
+- Copy the Application id to a clipboard or notepad 
+- Export the Object Id and Application id to a Terraform environment variable
+$ export TF_VAR_objectid2=0c09d4e3-6ff6-4081-9267-d05652407d13
+$ export TF_VAR_applicationid=08166807-9531-451c-aa51-f8ca24c47b25
+
+7) Generate Git credentials on the ATT repo
+a. Browse to the following url 
+	https://dev.azure.com/poc2pattern/_git/POCtoPattern
+b. Click the Clone button
+c. Click Generate GIT credetials under HTTP
+d. Type and confirm password and click the save Git credentials button 
+8) Run the Following commands to clone the att repo. Replace the username below with your username. 
+git clone https://dev.azure.com/poc2pattern/POCtoPattern/_git/POCtoPattern
+Cloning into 'POCtoPattern'...
+Username for 'https://dev.azure.com': prreddy@microsoft.com
+Password for 'https://prreddy@microsoft.com@dev.azure.com':
+remote: Azure Repos
+Checking connectivity... done.
+9) Change directory to the StorageAccountforTerraformState directory and open the configurestorageaccount.sh file with your favorite editor. 
+	a) Modify the RESOURCE_GROUP_NAME, STORAGE_ACCOUNT_NAME variables.  Keep the $RANDOM as the account name needs to be globally account and this will append a random 4 digit number to the storage account name that you choose. 
+RESOURCE_GROUP_NAME=tstate
+STORAGE_ACCOUNT_NAME=tstate$RANDOM
+CONTAINER_NAME=tstate
+	b) Run the shell script to create the storage account, container and access key
+		$./configurestorageaccount.sh
+	c) Save the three outputs from the script 
+storage_account_name: tstate23960
+container_name: tstate
+access_key: PfRituxNLbjLMJDVJEdPI2DdaZXyf2F+h6zcDLNNMZ4LPEpEZr/IBwSiCvTLWQJ4sRc3vM3toBVINCE7AEnRvw==
+10) Change directory to POCtoPattern/KeyVaultDiskEncryption
+a) Modify the backend.tfvars file with the appropriate values for the storage account, container and key
+b) Ensure environment variables were set in previous steps 
+c) Run the following 
+$ terraform init  -backend-config=backend.tfvars
+$ terraform plan
+$ terraform apply 

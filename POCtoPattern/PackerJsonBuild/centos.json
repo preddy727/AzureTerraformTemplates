@@ -1,0 +1,30 @@
+{
+  "builders": [{
+    "type": "azure-arm",
+
+    "managed_image_resource_group_name": "__targetResourceGroup__",
+    "managed_image_name": "__vmimagename__",
+
+    "os_type": "Linux",
+    "image_publisher": "OpenLogic",
+    "image_offer": "CentOS",
+    "image_sku": "7.5",
+
+    "azure_tags": {
+        "dept": "Engineering",
+        "task": "Image deployment"
+    },
+
+    "location": "__location__",
+    "vm_size": "__vmsize__"
+  }],
+  "provisioners": [{
+    "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "inline": [
+      __inlinecmdarray__
+      
+    ],
+    "inline_shebang": "/bin/sh -x",
+    "type": "shell"
+  }]
+}

@@ -1,0 +1,39 @@
+{
+  "variables": {
+      "client_id": "",
+      "client_secret": "",
+      "tenant_id": "",
+      "subscription_id": ""                                   
+  },
+  "builders": [{
+    "type": "azure-arm",
+    "client_id": "{{user `client_id`}}",
+    "client_secret": "{{user `client_secret`}}",
+    "tenant_id": "{{user `tenant_id`}}",
+    "subscription_id": "{{user `subscription_id`}}",
+    "managed_image_resource_group_name": "__targetResourceGroup__",
+    "managed_image_name": "__target_vmimagename__",
+
+    "os_type": "__mktplace_os_type__",
+    "image_publisher": "__mktplace_image_publisher__",
+    "image_offer": "__mktplace_image_offer__",
+    "image_sku": "__mktplace_image_sku__",
+
+    "azure_tags": {
+        "dept": "Engineering",
+        "task": "Image deployment"
+    },
+
+    "location": "__location__",
+    "vm_size": "__vmsize__"  
+  }],
+  "provisioners": [{
+    "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "inline": [
+      __inlinecmdarray__
+      
+    ],
+    "inline_shebang": "/bin/sh -x",
+    "type": "shell"
+  }]
+}

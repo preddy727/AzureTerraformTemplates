@@ -1,0 +1,48 @@
+{
+  "variables": {
+      "client_id": "",
+      "client_secret": "",
+      "tenant_id": "",
+      "subscription_id": ""                                   
+  },
+  "builders": [{
+    "type": "azure-arm",
+    "client_id": "{{user `client_id`}}",
+    "client_secret": "{{user `client_secret`}}",
+    "tenant_id": "{{user `tenant_id`}}",
+    "subscription_id": "{{user `subscription_id`}}",
+    
+    "shared_image_gallery": {
+      "subscription": "{{user `subscription_id`}}",
+      "resource_group": "__image_gallery_resource_group_name__",
+      "gallery_name": "__image_gallery_name__",
+      "image_name": "__image_gallery_source_image_name__"
+    },
+    "managed_image_resource_group_name": "__packer_resource_group__",
+    "managed_image_name": "__packer_target_vmimagename__",
+    "managed_image_storage_account_type": "Premium_LRS",
+
+    "azure_tags": {
+        "dept": "Engineering",
+        "task": "Image deployment"
+    },
+    "os_type": "__packer_image_os_type__",
+
+    "location": "__packer_location__",
+    "vm_size": "__packer_vmsize__"  
+  }],
+  "provisioners": [
+    {
+    "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "inline":
+    [
+      "ping -c 5 8.8.8.8",
+      "sudo dig @168.63.129.16 olcentgbl.trafficmanager.net",
+      "sudo yum -y install tomcat",
+      "sudo systemctl enable tomcat",
+      "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && exit"
+    ],
+    "inline_shebang": "/bin/sh -x",
+    "type": "shell"
+  }]
+}

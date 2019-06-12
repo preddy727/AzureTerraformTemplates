@@ -1,0 +1,4 @@
+$sa = New-AzStorageAccount -ResourceGroupName iac-cicd -Name keyvaultlogs$RANDOM -Type Standard_LRS -Location 'East US'
+$kv = Get-AzKeyVault -VaultName 'iac-cicd-vault'
+Set-AzDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Category AuditEvent
+Set-AzDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Category AuditEvent -RetentionEnabled $true -RetentionInDays 90
