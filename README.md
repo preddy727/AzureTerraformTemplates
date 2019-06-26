@@ -8,7 +8,12 @@ Option 1 for Ubuntu management VM
 * Create a Terraform Ubuntu virtual machine with managed identities using a marketplace template [here](https://docs.microsoft.com/en-us/azure/terraform/terraform-vm-msi)
 
 Option 2 for CentOS management VM 
+
+
+
 * Create a Terraform Centos virtual machine with managed identities. 
+   - Source code - AzureTerraformTemplates/POCtoPattern/MgmtVmMI/
+   - Populate variables.tf and run terraform apply within folder 
 
 Setup Steps
 * Contributor permission helps MSI on VM to use Terraform to create resources outside the VM resource group. You can easily achieve this action by running a script once inside the Terraform Linux vm. ~/tfEnv.sh
@@ -40,8 +45,11 @@ Setup Steps
 * [Access Tomcat webpage](#Access-the-tomcat-webpage)
 
 
-## Custom Ubuntu Tomcat with Packer
+## Custom Ubuntu Tomcat image with Packer
 ### [Back to Excercises](#exercises)
+
+Start Here by reading the following document on how to build an Azure build pipeline 
+POCtoPattern/Azure Build pipeline - Customized image in Shared Image Gallery.docx
 
 1. Create an Azure DevOps project
 
@@ -51,6 +59,8 @@ Setup Steps
 
 4. Setup a build pipeline with tasks using the replace tokens module to populate environment variables into the json file. 
 
+- Documentation is in Azure Build pipeline - Customized image in Shared Image Gallery.docx
+
 5. The output is a customized managed image. 
 
 6. Note the resource group and name of the final managed image. 
@@ -59,8 +69,11 @@ Setup Steps
 ## Create the key vault disk encryption with key
 ### [Back to Excercises](#exercises)
 
-1.Login to Terraform vm where github repository was cloned and run the following commands. 
+1.Login to Terraform vm with a managed identity where github repository was cloned and run the following commands.
 
+2. Change to the Source directory for key vault which is AzureTerraformTemplates/POCtoPattern/KeyVaultDiskEncryption/
+
+3. 
 export ARM_USE_MSI=true
 
 Terraform init 
@@ -71,6 +84,10 @@ Terraform apply -out output
 
 ## Deploy a Virtual machine scale set
 ### [Back to Excercises](#exercises)
+
+Create a release pipeline using the shared image gallery build artificat created in 
+
+AzureTerraformTemplates/POCtoPattern/Azure Release pipeline - Deply Scale Set using customized tomcat image in SIG.docx
 
 ## Access Tomcat webpage
 ### [Back to Excercises](#exercises)
