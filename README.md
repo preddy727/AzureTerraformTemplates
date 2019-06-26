@@ -43,6 +43,9 @@ Setup Steps
 ## Custom Ubuntu Tomcat with Packer
 ### [Back to Excercises](#exercises)
 
+Start Here by reading the following document on how to build an Azure build pipeline 
+POCtoPattern/Azure Build pipeline - Customized image in Shared Image Gallery.docx
+
 1. Create an Azure DevOps project
 
 2. Import the  Packer json into Azure repot
