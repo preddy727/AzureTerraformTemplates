@@ -51,6 +51,8 @@ Setup Steps
 
 4. Setup a build pipeline with tasks using the replace tokens module to populate environment variables into the json file. 
 
+- Documentation is in Azure Build pipeline - Customized image in Shared Image Gallery.docx
+
 5. The output is a customized managed image. 
 
 6. Note the resource group and name of the final managed image. 
