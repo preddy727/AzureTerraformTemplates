@@ -45,7 +45,7 @@ Setup Steps
 * [Access Tomcat webpage](#Access-the-tomcat-webpage)
 
 
-## Custom Ubuntu Tomcat with Packer
+## Custom Ubuntu Tomcat image with Packer
 ### [Back to Excercises](#exercises)
 
 Start Here by reading the following document on how to build an Azure build pipeline 
@@ -84,6 +84,10 @@ Terraform apply -out output
 
 ## Deploy a Virtual machine scale set
 ### [Back to Excercises](#exercises)
+
+Create a release pipeline using the shared image gallery build artificat created in 
+
+AzureTerraformTemplates/POCtoPattern/Azure Release pipeline - Deply Scale Set using customized tomcat image in SIG.docx
 
 ## Access Tomcat webpage
 ### [Back to Excercises](#exercises)
