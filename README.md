@@ -69,9 +69,9 @@ POCtoPattern/Azure Build pipeline - Customized image in Shared Image Gallery.doc
 ## Create the key vault disk encryption with key
 ### [Back to Excercises](#exercises)
 
-1.Login to Terraform vm where github repository was cloned and run the following commands.
-Change to the Source directory for key vault which is AzureTerraformTemplates/POCtoPattern/KeyVaultDiskEncryption/
-
+1.Login to Terraform vm with a managed identity where github repository was cloned and run the following commands.
+2. Change to the Source directory for key vault which is AzureTerraformTemplates/POCtoPattern/KeyVaultDiskEncryption/
+3. 
 export ARM_USE_MSI=true
 
 Terraform init 
