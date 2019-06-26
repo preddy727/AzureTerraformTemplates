@@ -8,7 +8,12 @@ Option 1 for Ubuntu management VM
 * Create a Terraform Ubuntu virtual machine with managed identities using a marketplace template [here](https://docs.microsoft.com/en-us/azure/terraform/terraform-vm-msi)
 
 Option 2 for CentOS management VM 
+
+
+
 * Create a Terraform Centos virtual machine with managed identities. 
+   - Source code - AzureTerraformTemplates/POCtoPattern/MgmtVmMI/
+   - Populate variables.tf and run terraform apply within folder 
 
 Setup Steps
 * Contributor permission helps MSI on VM to use Terraform to create resources outside the VM resource group. You can easily achieve this action by running a script once inside the Terraform Linux vm. ~/tfEnv.sh
