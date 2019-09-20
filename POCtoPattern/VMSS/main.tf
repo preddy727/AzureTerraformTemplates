@@ -18,16 +18,25 @@ module "loadbalancer" {
   }
 
   "lb_port" {
-    http = ["8080", "Tcp", "8080"]
+    sql = ["1433", "Tcp", "1433"]
   }
 }
+  
+data "template_file" "init" {
+  template = "${file("${path.module}/cloudconfigfirewall.tpl")}"
+  vars = {
+    forward_port = "${var.forward_port}"
+    to_port = "${var.to_port}"
+    to_addr = "${var.to_addr}"
+ }
+
 
 module "vmss-cloudinit" {
   source                                 = "..//Modules/VMSS"
   resource_group_name                    = "${var.resource_group_name}"
   name_prefix                            = "${var.name_prefix}"
   keyvaultname                           = "${var.keyvaultname}"
-  cloudconfig_file                       = "${path.module}/cloudconfig.tpl"
+  cloudconfig_file                       = "${path.module}/cloudconfigfirewall.tpl"
   location                               = "${var.location}"
   vm_size                                = "${var.vm_size}"
   admin_username                         = "${var.admin_username}"
