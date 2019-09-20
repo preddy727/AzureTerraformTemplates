@@ -8,6 +8,15 @@ variable "keyvaultname" {
   default = "__keyvaultname__"
 }
 
+variable "forward_port" {
+  }
+
+variable "to_port" {
+  }
+
+variable "to_addr" {
+  }
+
 
 
 variable "location" {
