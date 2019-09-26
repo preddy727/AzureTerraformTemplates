@@ -58,7 +58,7 @@ variable "nb_instance" {
 /*
 variable "vnet_subnet_id" {
   description = "The subnet id of the virtual network on which the vm scale set will be connected"
-  default = "/subscriptions/534caa83-46a7-4ee4-b441-e6c35ed9107d/resourceGroups/sqlmi-jdierk-sqlmitestenvironment-02-rg/providers/Microsoft.Network/virtualNetworks/att-pedemo-workload-vnet/subnets/ForwarderSubnet"
+  default = ""
 }
 */
 
@@ -143,7 +143,7 @@ variable "cloudconfig_file" {
 
 variable "pl_rg" {
   description = "The name of the resource group"
-  default     = "sqlmi-jdierk-sqlmiprivatelinkservice-02-rg"
+  default     = ""
 }
 
 variable "pl_location" {
