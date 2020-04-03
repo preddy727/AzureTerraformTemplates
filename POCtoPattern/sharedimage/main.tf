@@ -1,7 +1,19 @@
 provider "azurerm" {
+  version = "=2.0.0"
+  features {}
+}
 
-  version = "~> 1.23"
-
+terraform {
+  required_version = "=0.12.24"
+  backend "azurerm" {
+    resource_group_name  = "tstate"
+    storage_account_name = "__storage_account_name__"
+    container_name       = "__container_name__"
+    key                  = "__key__"
+    use_msi              = true
+    subscription_id  = "__subscription_id__"
+    tenant_id        = "__tenant_id__"
+  }
 }
 
 data "azurerm_resource_group" "rg" {
@@ -40,10 +52,12 @@ resource "azurerm_shared_image_version" "shared_img_version" {
   location            = "${data.azurerm_shared_image_gallery.img_gallery.location}"
   managed_image_id    = "${data.azurerm_image.packer_img.id}"
 
+
   target_region {
-    name                   = "${var.target_shared_image_location}"
+    name                   = "${data.azurerm_shared_image_gallery.img_gallery.location}"
     regional_replica_count = "${var.regional_replica_count}"
   }
+ 
 
   depends_on = ["azurerm_shared_image.shared_img"]
 }
