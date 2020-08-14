@@ -1,9 +1,9 @@
+# Configure the Azure Provider
 provider "azurerm" {
-
-  version = "~> 1.25"
-
+  # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
+  version = "=2.20.0"
+  features {}
 }
-
 module "keyvault" {
   source = "../Modules/keyvault"
   location = "${var.location}"
