@@ -1,7 +1,8 @@
+# Configure the Azure Provider
 provider "azurerm" {
-
-  version = "~> 1.23"
-
+  # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
+  version = "=2.20.0"
+  features {}
 }
 
 module "test_net" {
